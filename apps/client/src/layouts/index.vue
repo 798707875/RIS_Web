@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-import BaseHeader from '../components/Headers/index.vue'
+import BaseHeader from '@/components/Headers/index.vue'
 
 </script>
 

@@ -20,15 +20,20 @@
 </template>
   
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import DropDownMenu from './components/DropDownMenu/index.vue'
 import TabMenu from './components/TabMenu/index.vue'
 import { useRouter } from "vue-router";
+import { login2 } from '../../apis/login';
 const router = useRouter()
 
 const backHome = () => {
     router.push('/111')
 }
 
+onMounted(()=>{
+    login2()
+})
 
 </script>
   

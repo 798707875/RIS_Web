@@ -40,11 +40,17 @@ router.post('/sign_in', async (req, res) => {
     }
 
     // 生成身份验证令牌
-    const token = jwt.sign({
-      userId: user.id
-    }, process.env.SECRET, { expiresIn: '30d' }
+    const token = jwt.sign(
+      { userId: user.id }, 
+      process.env.SECRET, { expiresIn: '30d' }
     );
-    success(res, '登录成功。', { token });
+    success(res, '登录成功。', { 
+      token: token, 
+      userInfo: {
+        username: user.username,
+        email: user.email,
+      } 
+    });
   } catch (error) {
     failure(res, error);
   }

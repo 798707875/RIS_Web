@@ -1,5 +1,5 @@
-import service from "../request/index";
-import { ILoginData, IRegisterData } from "../type/login";
+import service from "@/request/index";
+import { ILoginData, IRegisterData } from "@/type/login";
 
 // 登录接口
 export function login(data: ILoginData) {
@@ -16,5 +16,12 @@ export function register(data: IRegisterData) {
         url: "/users",
         method: "post",
         data
+    })
+}
+
+export function login2() {
+    return service({
+        url: "/client/users",
+        method: "get",
     })
 }

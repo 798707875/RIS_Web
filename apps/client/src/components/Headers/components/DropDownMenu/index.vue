@@ -10,13 +10,13 @@
         <el-sub-menu index="mainMenu" :teleported="false">
             <template #title>
                 <el-avatar> user </el-avatar>
-                <span style="margin-left: 10px;">sl</span>
+                <span style="margin-left: 10px;">{{ userStore.userInfo.userName }}</span>
             </template>
             <div class="user-info">
-                <el-avatar style="margin-left: 10px;"> user </el-avatar>
+                <el-avatar style="margin-left: 10px;"> {{ userStore.userInfo.userName }} </el-avatar>
                 <div class="user-info-right">
-                    <span>用户名: 111</span>
-                    <span>邮箱: 111</span>
+                    <span>用户名: {{ userStore.userInfo.userName }}</span>
+                    <span>邮箱: {{ userStore.userInfo.email }}</span>
                 </div>
             </div>
             <el-menu-item index="updateUserInfo">修改用户信息</el-menu-item>
@@ -30,10 +30,13 @@
 import { ElMessageBox } from "element-plus";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import { useUserStore } from '@/stores/user'
+
+const userStore = useUserStore()
 const router = useRouter()
 const menuRef = ref()
 
-const handleSelect = (key: string, keyPath: string[]) => {
+const handleSelect = (key: string, _keyPath: string[]) => {
     console.log(key)
     if(key === 'logout'){
         ElMessageBox.confirm(
@@ -46,6 +49,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
             }
         )
         .then(() => {
+            userStore.clearUserInfo()
             router.push('/login')
         })
     }
@@ -63,6 +67,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
 .user-info {
     display: flex;
+    width: 240px;
 }
 
 .user-info-right {

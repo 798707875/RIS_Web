@@ -4,8 +4,10 @@ var cookieParser = require('cookie-parser');
 const cors = require('cors')
 require('dotenv').config();
 
-var usersRouter = require('./routes/users');
+const adminAuth = require('./middlewares/admin-auth')
+const usersRouter = require('./routes/users');
 const adminAuthRouter = require('./routes/auth');
+const users11Router = require('./routes/client/users');
 
 var app = express();
 
@@ -20,6 +22,6 @@ app.use(cors());
 
 app.use('/users', usersRouter);
 app.use('/auth', adminAuthRouter);
-
+app.use('/client/users',adminAuth, users11Router);
 
 module.exports = app;

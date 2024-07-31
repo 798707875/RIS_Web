@@ -55,9 +55,11 @@
 import { reactive, ref } from 'vue'
 import { ElMessage, FormRules, type FormInstance, type TabsPaneContext } from 'element-plus'
 import { useRouter } from "vue-router";
-import { login, register } from '../../apis/login'
+import { login, register } from '@/apis/login'
+import { useUserStore } from '@/stores/user'
 
 const router = useRouter()
+const userStore = useUserStore();
 const ruleFormRef = ref<FormInstance>()
 const activeName = ref('login')
 const ruleForm = reactive({
@@ -154,6 +156,10 @@ const submitForm = (formEl: FormInstance | undefined) => {
                         message: '登录成功.',
                         type: 'success',
                     })
+                    const { username, email } = res.data.data.userInfo;
+                    userStore.userInfo.userName = username
+                    userStore.userInfo.email = email
+                    userStore.token = res.data.data.token
                     router.push('/')
                 }else{
                     ElMessage({
@@ -169,11 +175,15 @@ const submitForm = (formEl: FormInstance | undefined) => {
                         'password': ruleForm.passWord,
                         'email': ruleForm.email
                     })
-                    if(res.data.status){
+                    if(res.status){
                         ElMessage({
                             message: '注册成功.',
                             type: 'success',
                         })
+                        const { username, email } = res.data.data.userInfo;
+                        userStore.userInfo.userName = username
+                        userStore.userInfo.email = email
+                        userStore.token = res.data.data.token
                         router.push('/')
                     }else{
                         ElMessage({
