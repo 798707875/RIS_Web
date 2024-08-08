@@ -160,7 +160,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
                     userStore.userInfo.userName = username
                     userStore.userInfo.email = email
                     userStore.token = res.data.data.token
-                    router.push('/')
+                    router.push('/imaging-review')
                 }else{
                     ElMessage({
                         message: res.data.errors.join(','),
@@ -184,7 +184,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
                         userStore.userInfo.userName = username
                         userStore.userInfo.email = email
                         userStore.token = res.data.data.token
-                        router.push('/')
+                        router.push('/imaging-review')
                     }else{
                         ElMessage({
                             message: res.data.errors.join(','),

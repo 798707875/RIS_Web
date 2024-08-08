@@ -1,21 +1,31 @@
 <template>
     <div class="header">
-        <div class="left">111</div>
+        <div class="left">
+            <TabMenu />
+        </div>
         <div class="right">
             <div>
                 <DropDownMenu />
             </div>
             <div class="segmentation">|</div>
             <div class="tab-menu">
-                <TabMenu />
+                <el-dropdown>
+                    <Expand class="icon"/>
+                    <template #dropdown>
+                        <el-dropdown-menu style="width: 100vw;">
+                            <el-dropdown-item>Action 1</el-dropdown-item>
+                            <el-dropdown-item>Action 2</el-dropdown-item>
+                            <el-dropdown-item>Action 3</el-dropdown-item>
+                        </el-dropdown-menu>
+                    </template>
+                </el-dropdown>
             </div>
-            <House class="icon" @click='backHome' />
+            <HomeFilled class="icon" @click='backHome' />
             <div class="segmentation">|</div>
             <div class="current-module">
                 <span>预约登记</span>
             </div>
         </div>
-        
     </div>
 </template>
   
@@ -28,7 +38,7 @@ import { login2 } from '../../apis/login';
 const router = useRouter()
 
 const backHome = () => {
-    router.push('/111')
+    router.push('/imaging-review')
 }
 
 onMounted(()=>{

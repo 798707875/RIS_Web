@@ -14,12 +14,12 @@ const routes: Array<RouteRecordRaw> = [
             {
                 path: '/imaging-review',
                 name: 'imaging-review',
-                component: () => import('../views/imaging-review/index.vue')
+                component: () => import('@/views/imaging-review/index.vue')
             },
             {
                 path: '/information-registration',
                 name: 'information-registration',
-                component: () => import('../views/information-registration/index.vue')
+                component: () => import('@/views/information-registration/index.vue')
             },
         ]
     },
